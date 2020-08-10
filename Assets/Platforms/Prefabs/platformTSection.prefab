@@ -182,6 +182,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2130121073627367977}
   - component: {fileID: 2130121073636992461}
+  - component: {fileID: 923729311820284781}
+  - component: {fileID: -7729957633707890347}
+  - component: {fileID: 8785714244451948597}
+  - component: {fileID: -1691600215006274382}
   m_Layer: 0
   m_Name: platformTSection
   m_TagString: platformTSection
@@ -229,6 +233,58 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!64 &923729311820284781
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2130121073627600393}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 395fc9167e1b3435fb214ab22d495c55, type: 3}
+--- !u!114 &-7729957633707890347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2130121073627600393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 198eb5a21fb37ba40850486b7a16ff2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &8785714244451948597
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2130121073627600393}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1.93, z: 4.87}
+  m_Center: {x: 3.25, y: 0.91, z: 0}
+--- !u!65 &-1691600215006274382
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2130121073627600393}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1.93, z: 4.87}
+  m_Center: {x: -3.34, y: 0.91, z: 0}
 --- !u!1 &2130121073627600395
 GameObject:
   m_ObjectHideFlags: 0

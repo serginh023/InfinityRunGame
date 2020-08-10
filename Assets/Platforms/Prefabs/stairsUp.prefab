@@ -640,6 +640,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7190683731708331437}
   - component: {fileID: 7190683731700558349}
+  - component: {fileID: 7914552000078929065}
+  - component: {fileID: -6373691742305768183}
+  - component: {fileID: 1249842231628411424}
   m_Layer: 0
   m_Name: stairsUp
   m_TagString: stairsUp
@@ -684,6 +687,45 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!64 &7914552000078929065
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7190683731707845005}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: aa3d324a3f5434a2488d85d7b3c73aa6, type: 3}
+--- !u!114 &-6373691742305768183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7190683731707845005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 198eb5a21fb37ba40850486b7a16ff2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &1249842231628411424
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7190683731707845005}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5.21, y: 1.94, z: 1.2}
+  m_Center: {x: 0, y: 5.47, z: -4.6}
 --- !u!1 &7190683731707845007
 GameObject:
   m_ObjectHideFlags: 0

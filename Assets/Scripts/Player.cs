@@ -5,13 +5,31 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     Animator anim;
-    // Start is called before the first frame update
+
+    public static GameObject player;
+    public static GameObject currentPlataform;
+
+    //public Rigidbody rigidbody;
+
+    private void OnEnable()
+    {
+        Debug.Log("Enable");
+    }
+
+    private void Awake()
+    {
+        Debug.Log("Awake");
+    }
+
     void Start()
     {
         anim = GetComponent<Animator>();
+
+        player = this.gameObject;
+
+        //rigidbody = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
@@ -24,20 +42,25 @@ public class Player : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.RightArrow))
         {
-            transform.Translate(Vector3.up * 90);
+            transform.Rotate(Vector3.up * 90);
         }
         else if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            transform.Translate(Vector3.up * -90);
+            transform.Rotate(Vector3.up * -90);
         }
         else if (Input.GetKeyDown(KeyCode.A))
         {
-            transform.Translate(-.1f, 0, 0);
+            transform.Translate(-.25f, 0, 0);
         }
         else if (Input.GetKeyDown(KeyCode.D))
         {
-            transform.Translate(.1f, 0, 0);
+            transform.Translate(.25f, 0, 0);
         }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        currentPlataform = collision.gameObject;
     }
 
     void StopJumping()

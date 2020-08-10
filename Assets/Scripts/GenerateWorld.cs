@@ -45,10 +45,4 @@ public class GenerateWorld : MonoBehaviour
             m_DummyTraveller.transform.Translate(Vector3.forward * -10);//avança
         }
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
