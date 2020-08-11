@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: -5528190579110275768}
   - component: {fileID: -2200759919408966937}
   - component: {fileID: 1200012819408223984}
+  - component: {fileID: 2249511809515908107}
   m_Layer: 0
   m_Name: platformZThin
   m_TagString: platformZThin
@@ -108,6 +109,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.25, y: 1, z: 1.15}
   m_Center: {x: 0, y: 0.99, z: -4.42}
+--- !u!114 &2249511809515908107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 203512419971312928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e802d8e73c4f50c4eaf8d335b56dcdb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &203512419971312930
 GameObject:
   m_ObjectHideFlags: 0

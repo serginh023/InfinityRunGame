@@ -8,18 +8,8 @@ public class Player : MonoBehaviour
 
     public static GameObject player;
     public static GameObject currentPlataform;
-
-    //public Rigidbody rigidbody;
-
-    private void OnEnable()
-    {
-        Debug.Log("Enable");
-    }
-
-    private void Awake()
-    {
-        Debug.Log("Awake");
-    }
+    public bool canTurn = false;
+    Vector3 startPosition;
 
     void Start()
     {
@@ -27,7 +17,9 @@ public class Player : MonoBehaviour
 
         player = this.gameObject;
 
-        //rigidbody = GetComponent<Rigidbody>();
+        GenerateWorld.RunDummy();
+
+        startPosition = player.transform.position;
     }
 
     void Update()
@@ -40,27 +32,55 @@ public class Player : MonoBehaviour
         {
             anim.SetBool("isMagic", true);
         }
-        else if (Input.GetKeyDown(KeyCode.RightArrow))
+        else if (Input.GetKeyDown(KeyCode.RightArrow) && canTurn)
         {
             transform.Rotate(Vector3.up * 90);
+            GenerateWorld.m_DummyTraveller.transform.forward = -this.transform.forward;
+            GenerateWorld.RunDummy();
+            if (GenerateWorld.m_lastPlatform.tag != "platformTSection")
+                GenerateWorld.RunDummy();
+
+            this.transform.position = new Vector3(startPosition.x, this.transform.position.y, startPosition.z);
         }
-        else if (Input.GetKeyDown(KeyCode.LeftArrow))
+        else if (Input.GetKeyDown(KeyCode.LeftArrow) && canTurn)
         {
             transform.Rotate(Vector3.up * -90);
+            GenerateWorld.m_DummyTraveller.transform.forward = -this.transform.forward;
+            GenerateWorld.RunDummy();
+
+            if (GenerateWorld.m_lastPlatform.tag != "platformTSection")
+                GenerateWorld.RunDummy();
+
+            this.transform.position = new Vector3(startPosition.x, this.transform.position.y, startPosition.z);
         }
         else if (Input.GetKeyDown(KeyCode.A))
         {
-            transform.Translate(-.25f, 0, 0);
+            transform.Translate(-.5f, 0, 0);
         }
         else if (Input.GetKeyDown(KeyCode.D))
         {
-            transform.Translate(.25f, 0, 0);
+            transform.Translate(.5f, 0, 0);
         }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         currentPlataform = collision.gameObject;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other is BoxCollider && GenerateWorld.m_lastPlatform.gameObject.tag != "platformTSection")
+            GenerateWorld.RunDummy();
+
+        if (other is SphereCollider)
+            canTurn = true;
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other is SphereCollider)
+            canTurn = false;
     }
 
     void StopJumping()

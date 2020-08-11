@@ -5,44 +5,44 @@ using UnityEngine;
 
 public class GenerateWorld : MonoBehaviour
 {
-    GameObject m_DummyTraveller;
+    public static GameObject m_DummyTraveller;
+    public static GameObject m_lastPlatform;
 
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         m_DummyTraveller = new GameObject("dummy");
+    }
 
-        for(int i = 0; i < 20; i++)
+    public static void RunDummy()
+    {
+        GameObject go = Pool.singleton.GetRandom();
+
+        if(go == null)  return;
+
+        if (m_lastPlatform != null)
         {
-            GameObject go = Pool.singleton.GetRandom();
+            if (m_lastPlatform.tag == "platformTSection")
+                m_DummyTraveller.transform.position = m_lastPlatform.transform.position +
+                Player.player.transform.forward * 20;
+            else 
+                m_DummyTraveller.transform.position = m_lastPlatform.transform.position +
+                    Player.player.transform.forward * 10;
 
-            if (go == null) return;
-
-            go.SetActive(true);
-            go.transform.position = m_DummyTraveller.transform.position;
-            go.transform.rotation = m_DummyTraveller.transform.rotation;
-
-            if (go.tag == "stairsUp")
-            {
+            if(m_lastPlatform.tag == "stairsUp")
                 m_DummyTraveller.transform.Translate(0, 5, 0);
-            }
-            else if(go.tag == "stairsDown")
-            {
-                m_DummyTraveller.transform.Translate(0, -5, 0);
-                go.transform.Rotate( new Vector3(0, 180, 0) );
-                go.transform.position = m_DummyTraveller.transform.position;
-            }
-            else if (go.tag == "platformTSection")
-            {
-                if(Random.Range(0, 2) == 0)
-                    m_DummyTraveller.transform.Rotate( new Vector3(0, 90, 0) );
-                else
-                    m_DummyTraveller.transform.Rotate(new Vector3(0, -90, 0));
+        }
 
-                m_DummyTraveller.transform.Translate(Vector3.forward * -10);//avança
-            }
+        m_lastPlatform = go;
+        go.SetActive(true);
+        go.transform.position = m_DummyTraveller.transform.position;
+        go.transform.rotation = m_DummyTraveller.transform.rotation;
 
-            m_DummyTraveller.transform.Translate(Vector3.forward * -10);//avança
+
+        if(go.tag == "stairsDown")
+        {
+            m_DummyTraveller.transform.Translate(0, -5, 0);
+            go.transform.Rotate(0, 180, 0);
+            go.transform.position = m_DummyTraveller.transform.position;
         }
     }
 }
