@@ -7,6 +7,8 @@ public class Deactivate : MonoBehaviour
     bool dScheduled = false;
     private void OnCollisionExit(Collision player)
     {
+        if (Player.isDead) return;
+
         if (player.gameObject.tag=="Player" && !dScheduled)
         {
             Invoke("SetInactive", 3f);

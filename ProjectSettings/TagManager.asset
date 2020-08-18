@@ -11,6 +11,8 @@ TagManager:
   - stairsUp
   - stairsDown
   - Fire
+  - Wall
+  - Spell
   layers:
   - Default
   - TransparentFX
