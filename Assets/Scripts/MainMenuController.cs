@@ -5,12 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuController : MonoBehaviour
 {
+    public GameObject m_panelHelp;
 
     public void LoadGameScene()
     {
         SceneManager.LoadScene("GamePlay", LoadSceneMode.Single);
     }
-
 
     public void QuitGame()
     {
@@ -20,9 +20,16 @@ public class MainMenuController : MonoBehaviour
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
-        {
             QuitGame();
-        }
     }
 
+    public void OpenHelp()
+    {
+        m_panelHelp.SetActive(true);
+    }
+
+    public void CloseHelp()
+    {
+        m_panelHelp.SetActive(false);
+    }
 }
