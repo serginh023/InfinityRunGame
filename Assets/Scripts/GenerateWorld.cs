@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GenerateWorld : MonoBehaviour
 {
@@ -11,6 +12,11 @@ public class GenerateWorld : MonoBehaviour
     void Awake()
     {
         m_DummyTraveller = new GameObject("dummy");
+    }
+
+    public void QuitToMenu()
+    {
+        SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
     }
 
     public static void RunDummy()
