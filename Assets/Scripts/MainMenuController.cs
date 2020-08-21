@@ -1,11 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class MainMenuController : MonoBehaviour
 {
-    public GameObject m_panelHelp;
+    public GameObject[] m_panels;
+    public GameObject[] m_buttons;
+
 
     public void LoadGameScene()
     {
@@ -17,19 +20,35 @@ public class MainMenuController : MonoBehaviour
         Application.Quit();
     }
 
+    private void Start()
+    {
+        m_panels = GameObject.FindGameObjectsWithTag("mmPanel");
+        m_buttons = GameObject.FindGameObjectsWithTag("mmButton");
+
+        foreach (GameObject p in m_panels)
+            p.SetActive(false);
+    }
+
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if ( Input.GetKeyDown(KeyCode.Escape) )
             QuitGame();
     }
 
-    public void OpenHelp()
+    public void OpenPanel(Button btn)
     {
-        m_panelHelp.SetActive(true);
+        btn.transform.GetChild(1).gameObject.SetActive(true);
+        foreach (GameObject b in m_buttons)
+            if(b != btn.gameObject)
+                b.SetActive(false);
+
     }
 
-    public void CloseHelp()
+    public void ClosePanel(Button btn)
     {
-        m_panelHelp.SetActive(false);
+        btn.transform.parent.gameObject.SetActive(false);
+
+        foreach (GameObject b in m_buttons)
+            b.SetActive(true);
     }
 }
