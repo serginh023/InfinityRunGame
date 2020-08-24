@@ -15,6 +15,7 @@ TagManager:
   - Spell
   - mmPanel
   - mmButton
+  - gameData
   layers:
   - Default
   - TransparentFX
