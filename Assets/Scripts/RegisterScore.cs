@@ -9,5 +9,6 @@ public class RegisterScore : MonoBehaviour
     void Start()
     {
         GameData.singleton.scoreText = GetComponent<Text>();
+        GameData.singleton.UpdateScore(0);
     }
 }

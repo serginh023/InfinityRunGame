@@ -8,10 +8,11 @@ public class MainMenuController : MonoBehaviour
 {
     public GameObject[] m_panels;
     public GameObject[] m_buttons;
-
+    int m_maxLives = 3;
 
     public void LoadGameScene()
     {
+        PlayerPrefs.SetInt("lives", m_maxLives);
         SceneManager.LoadScene("GamePlay", LoadSceneMode.Single);
     }
 

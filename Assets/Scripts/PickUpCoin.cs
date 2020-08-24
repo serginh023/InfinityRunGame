@@ -9,9 +9,7 @@ public class PickUpCoin : MonoBehaviour
     private void Start()
     {
         meshs = this.GetComponentsInChildren<MeshRenderer>();
-        Debug.Log("meshs: " + meshs.Length);
     }
-
 
     private void OnTriggerEnter(Collider other)
     {
@@ -23,7 +21,6 @@ public class PickUpCoin : MonoBehaviour
                 m.enabled = false;
         }
     }
-
 
     private void OnEnable()
     {

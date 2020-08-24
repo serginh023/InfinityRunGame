@@ -1,6 +1,10 @@
-﻿using System.Collections;
+﻿using JetBrains.Annotations;
+using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -15,7 +19,12 @@ public class Player : MonoBehaviour
     public GameObject m_Spell;
     public Transform spellStartPosition;
     Rigidbody spellRG;
-        
+
+    int m_livesLeft;
+    public Texture aliveIcon;
+    public Texture deadIcon;
+    public RawImage[] icons;
+    public GameObject panelGameOver;
 
     void Start()
     {
@@ -30,6 +39,20 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody>();
 
         spellRG = m_Spell.GetComponent<Rigidbody>();
+
+        isDead = false;
+
+        m_livesLeft = PlayerPrefs.GetInt("lives");
+
+        for (int i = 0; i < icons.Length;i++)
+        {
+            if (i >= m_livesLeft)
+                icons[i].texture = deadIcon;
+            else
+                icons[i].texture = aliveIcon;
+        }
+
+
     }
 
     void Update()
@@ -79,10 +102,33 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Fire" || collision.gameObject.tag == "Wall")
+        if (collision.gameObject.tag == "Fire" || collision.gameObject.tag == "Wall" && !isDead)
         {
             anim.SetTrigger("isDead");
             isDead = true;
+            m_livesLeft--;
+            PlayerPrefs.SetInt("lives", m_livesLeft);
+            if (m_livesLeft > 0)
+                Invoke("RestartGame", 1f);
+            else
+            {
+                int highscore;
+                icons[0].texture = deadIcon;
+                panelGameOver.SetActive(true);
+
+                PlayerPrefs.SetInt("lastscore", PlayerPrefs.GetInt("score"));
+
+                if (PlayerPrefs.HasKey("highscore"))
+                {
+                    highscore = PlayerPrefs.GetInt("highscore");
+
+                    if(highscore < PlayerPrefs.GetInt("score"))
+                        PlayerPrefs.SetInt("highscore", PlayerPrefs.GetInt("score"));
+                }
+                else
+                    PlayerPrefs.SetInt("highscore", PlayerPrefs.GetInt("score"));
+            }
+
         }
             
         else 
@@ -115,6 +161,11 @@ public class Player : MonoBehaviour
     void KillSpell()
     {
         m_Spell.SetActive(false);
+    }
+
+    void RestartGame()
+    {
+        SceneManager.LoadScene("GamePlay", LoadSceneMode.Single);
     }
 
     void StopJumping()
