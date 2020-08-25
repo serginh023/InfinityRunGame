@@ -17,6 +17,8 @@ public class PickUpCoin : MonoBehaviour
         {
             GameData.singleton.UpdateScore(10);
 
+            Player.sfx[8].Play();
+
             foreach (MeshRenderer m in meshs)
                 m.enabled = false;
         }

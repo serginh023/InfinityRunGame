@@ -25,10 +25,13 @@ public class Player : MonoBehaviour
     public Texture deadIcon;
     public RawImage[] icons;
     public GameObject panelGameOver;
+    public static AudioSource[] sfx;
 
     void Start()
     {
         anim = GetComponent<Animator>();
+
+        sfx = GameObject.FindWithTag("gameData").GetComponentsInChildren<AudioSource>();
 
         player = this.gameObject;
 
@@ -64,6 +67,7 @@ public class Player : MonoBehaviour
         {
             anim.SetBool("isJumping", true);
             rb.AddForce(Vector3.up * 250);
+            sfx[7].Play();
         }
         else if (Input.GetKeyDown(KeyCode.B))
         {
@@ -105,6 +109,7 @@ public class Player : MonoBehaviour
         if (collision.gameObject.tag == "Fire" || collision.gameObject.tag == "Wall" && !isDead)
         {
             anim.SetTrigger("isDead");
+            sfx[3].Play();
             isDead = true;
             m_livesLeft--;
             PlayerPrefs.SetInt("lives", m_livesLeft);
@@ -176,5 +181,20 @@ public class Player : MonoBehaviour
     void Stopmagic()
     {
         anim.SetBool("isMagic", false);
+    }
+
+    void FootStep1()
+    {
+        sfx[5].Play();
+    }
+
+    void FootStep2()
+    {
+        sfx[6].Play();
+    }
+
+    void SpellSound()
+    {
+        sfx[2].Play();
     }
 }

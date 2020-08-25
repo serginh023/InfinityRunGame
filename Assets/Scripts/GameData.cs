@@ -12,7 +12,8 @@ public class GameData : MonoBehaviour
 
     public Text scoreText = null;
     public Text highestScoreText = null;
-
+    public GameObject musicSlider;
+    public GameObject soundSlider;
 
     private void Awake()
     {
@@ -27,6 +28,9 @@ public class GameData : MonoBehaviour
         singleton = this;
 
         PlayerPrefs.SetInt("score", 0);
+
+        musicSlider.GetComponent<UpdateMusicVolume>().Start();
+        soundSlider.GetComponent<UpdateSoundVolume>().Start();
     }
 
     public void UpdateScore(int score)
