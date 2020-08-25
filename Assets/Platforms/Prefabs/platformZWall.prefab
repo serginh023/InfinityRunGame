@@ -1686,6 +1686,8 @@ MonoBehaviour:
   - {fileID: 904600482695288667}
   - {fileID: 904600483831241370}
   - {fileID: 904600483453935695}
+  m_explosion: {fileID: 6930522716109897918, guid: 09b54befada86de4f86da28096247580,
+    type: 3}
 --- !u!1 &904600483531044281
 GameObject:
   m_ObjectHideFlags: 0
