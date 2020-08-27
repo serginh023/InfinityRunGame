@@ -60,7 +60,6 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-
         if (isDead) return;
 
         if (Input.GetKeyDown(KeyCode.Space) && anim.GetBool("isMagic") == false )
@@ -106,9 +105,13 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Fire" || collision.gameObject.tag == "Wall" && !isDead)
+        if (collision.gameObject.tag == "Fire" || collision.gameObject.tag == "Wall" || collision.gameObject.tag == "fallCube" && !isDead)
         {
-            anim.SetTrigger("isDead");
+            if (collision.gameObject.tag == "fallCube")
+                anim.SetTrigger("isFalling");
+            else
+                anim.SetTrigger("isDead");
+
             sfx[3].Play();
             isDead = true;
             m_livesLeft--;
@@ -135,8 +138,8 @@ public class Player : MonoBehaviour
             }
 
         }
-            
-        else 
+
+        else
             currentPlataform = collision.gameObject;
     }
 

@@ -16,6 +16,7 @@ TagManager:
   - mmPanel
   - mmButton
   - gameData
+  - fallCube
   layers:
   - Default
   - TransparentFX
